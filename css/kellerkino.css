@@ -1,0 +1,166 @@
+@font-face {
+    font-family: 'icon-worksregular';
+    src: url('/fonts/icon-works-webfont.eot');
+    src: url('/fonts/icon-works-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/icon-works-webfont.woff') format('woff'),
+         url('/fonts/icon-works-webfont.ttf') format('truetype'),
+         url('/fonts/icon-works-webfont.svg#icon-worksregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.cAdd
+{
+	width: 32px; 
+	height: 32px;
+    margin: 1px;
+}
+
+.cUpd
+{
+	width: 32px; 
+	height: 32px;
+    margin: 1px;
+}
+
+.cDel
+{
+	width: 32px; 
+	height: 32px;
+    margin: 1px;
+}
+
+.cActive,
+.cAdd:hover,
+.cUpd:hover,
+.cDel:hover
+{
+	background-color:blue;
+}
+
+div.divTST {
+/*    margin: 5px; */
+    margin: 0px;
+    padding: 5px;
+/*    border: 1px solid #0000ff; */
+    border: 0px;
+    height: 320px;
+    width: 207px;
+    float: left;
+/*    text-align: center; */
+	position: relative;
+}
+
+div.divTST img.cover {
+    display: inline;
+    margin: 5px;
+    border: 1px solid #ffffff;
+	width:  185px;
+	height: 278px;
+}
+
+div.divTST img.cInfo
+{
+	width:32px; 
+	height: 32px;
+    margin: 1px;
+	content: url(/images/status_2.png);	
+	background-color:blue;
+}
+
+
+
+div.divTST:hover {
+	background: #aeaeae;
+	}
+
+div.desc {
+	font-size: 12px;
+	font-weight: 700;
+	color: #000;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	width: 185px;
+	white-space: nowrap;
+	overflow: hidden;
+	}
+
+div .moviePoster{
+	float: left;
+}
+
+div .videoPoster{
+	float: left;
+}
+
+div .movieIcon{
+	position:absolute;
+	top:255px;
+	left:12px;
+	width:185px; 
+	height: 32px;
+	text-align: right;
+}
+
+div .movieDetail
+{
+	display: none;
+    margin: 5px;
+	margin-left: 207px;	
+}
+
+div .searchMovie
+{
+	text-align: center;
+	background-color: #DBEAF9;	
+	padding: 10px;
+	width: 100%;
+}
+
+#cTSearch
+{
+	height: 26px;
+}
+
+.searchbutton {
+    background-color: #4D90FE;
+    border: 0px none;
+    border-radius: 0px 2px 2px 0px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    height: 32px;
+#    left: 400px;
+#    position: absolute;
+    text-align: center;
+    top: 0px;
+    vertical-align: top;
+    width: 72px;
+    z-index: -1;
+    margin-left: 0px;
+}
+
+.searchbutton:hover {
+    background-color: #357AE8;
+}
+	
+.searchbutton:before {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAABVUlEQVRYw+2YQRGEMAxFkVAJlYAEJCABCUhAQiWshJWABCRUAg7+XsrMTkibNDBdDvtnek0fSfqToQPQPeE8AuK5IDkBGAC8AESctQEIAHxXKTUIgB7ACr0CAHcrCIAJNm0A+ltALkAc2jWlKoKkcnCKCdCR0i3p4lNmroJwPRGEgC6VhGo2gaTXUQUhwEQryKsmUOaZU40WEOoTk8Eb3iTGYgGhcgaQmcRYL4N0BjHl+RnIeDuI1iFJ8EBivC0gm7bRCsGj1ktKIIGx6pohNjNZ9RYQnxliTgHRM1a/XrH4kIEZhEzstT0mgeTmBpJZzemJjgk65naTO9aAPvOFtavAWMqKdjHyhcxIW9quGRVVO2uh/lTr8fWMqbEw1cvzV/AlXXico2c884IgwZhADMY2STBNQDQwzUAkmKYgAoxvClKAGZqDMDBb89IwRjlI0/f/W+ID3tQLQPib2qQAAAAASUVORK5CYII=') repeat scroll 0% 0% / 17px auto transparent;
+    content: "";
+    display: block;
+    height: 17px;
+    margin: 0px auto;
+    width: 17px;
+}
+
+#start {
+	width:100%;
+	top: 50px;
+	bottom: 4px;
+	width: 100%;
+	position: absolute;
+}
+
+#startimg {
+	width:100%;
+	height:100%;
+}

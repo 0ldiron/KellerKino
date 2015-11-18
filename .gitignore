@@ -1,0 +1,8 @@
+# Database
+*.db
+*.sqlite
+# Work Files
+fonts_work/*.*
+images_work/*.*
+php_work/*.*
+*.zip
