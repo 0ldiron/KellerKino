@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +29,7 @@
 			<div style="float: right;">
 				<ul id ="mVideo" style="display: none;">
 					<?php
-						if (!empty($_SERVER["PHP_AUTH_USER"]))
+						if (!empty($_SESSION['UPDATE_AUTH']))
 						{
 							echo '<li id="mTNew"   >New</li>';
 						}
@@ -36,7 +39,7 @@
 					<li id="mTGenre">Genre</li>
 					<li id="mTRating">Rating</li>
 					<?php
-						if (!empty($_SERVER["PHP_AUTH_USER"]))
+						if (!empty($_SESSION['UPDATE_AUTH']))
 						{
 							echo '<li id="mTService" style="font-family: \'icon-worksregular\';">&#245;</li>';
 						}
@@ -49,7 +52,7 @@
 					<li id="mXTag"  >Tag</li>
 					<li id="mXRating">Rating</li>
 					<?php
-						if (!empty($_SERVER["PHP_AUTH_USER"]))
+						if (!empty($_SESSION['UPDATE_AUTH']))
 						{
 							echo '<li id="mXService" style="font-family: \'icon-worksregular\';">&#245;</li>';
 						}
