@@ -1,4 +1,5 @@
 <?php
+	session_start();
 
 include("SubVideo.php");
 
@@ -22,5 +23,13 @@ elseif ($_POST['cVTitle'] <> '')
 }
 else $stmt = 'SELECT * FROM movies ORDER BY lfdnr DESC';
 
-PrintVideos($stmt, 1);
+if (empty($_SESSION['UPDATE_AUTH']))
+{
+	PrintVideos($stmt, 3);
+}
+else
+{
+	PrintVideos($stmt, 1);
+}
+
 ?>

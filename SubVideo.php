@@ -2,6 +2,7 @@
 # $mode 0: Keine Buttons
 #       1: Status Buttons
 #       2: Delete Button
+#		3: Info Buttons
 function PrintVideos($stmt, $mode)
 {
 	$db = new SQLite3('videoworld.sqlite');
@@ -48,6 +49,15 @@ function PrintVideos($stmt, $mode)
 		elseif ($mode == 2)
 		{
 			echo '<img class="cDel" data-id="'.$row['lfdnr'].'" data-state="0" src="images/delete.png">';
+		}
+		elseif ($mode == 3)
+		{
+			switch ($row['status'])
+			{
+				case 1: echo '<img class="cInfo" src="images/status_1.png">'; break;
+				case 2: echo '<img class="cInfo" src="images/status_2.png">'; break;
+				case 3: echo '<img class="cInfo" src="images/status_3.png">'; break;
+			}
 		}
 		echo '</div>'; # movieIcon
 
