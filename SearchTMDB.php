@@ -11,7 +11,7 @@
 	echo '</div>';
 	
 	
-	if ($_POST['cXTitle'] <> '')
+	if ($_POST['cTitle'] <> '')
 	{
 		$tmdb_V3 = new TMDBv3($apikey,'de');
 
