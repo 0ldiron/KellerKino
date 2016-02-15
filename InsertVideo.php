@@ -1,6 +1,7 @@
 <?php
 	include("tmdb_v3.php");
 	include("omdb_v1.php");
+	include "SubIndex.php";
 
 
 	$apikey="ab6e8dd491403ef61a74448dc97f1e70";
@@ -28,7 +29,7 @@
 
 		$db = new SQLite3('videoworld.sqlite');
 		
-		$stmt = $db->prepare('INSERT INTO movies(id,imdb_id,original_title,overview,poster_path,release_date,title,imdbRating,backdrop_path,genres,actors,director) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)');
+		$stmt = $db->prepare('INSERT INTO movies(id,imdb_id,original_title,overview,poster_path,release_date,title,imdbRating,backdrop_path,genres,actors,director,idx_title) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
 		$stmt->bindParam( 1, $tm_info['id']);
 		$stmt->bindParam( 2, $tm_info['imdb_id']);
 		$stmt->bindParam( 3, $tm_info['original_title']);
@@ -41,6 +42,7 @@
 		$stmt->bindParam(10, $str_genres);
 		$stmt->bindParam(11, $om_info['Actors']);
 		$stmt->bindParam(12, $om_info['Director']);
+		$stmt->bindParam(13, GetIndex($tm_info['title']);
 		$rc = $stmt->execute();
 		if (!$rc)
 		{

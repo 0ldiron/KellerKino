@@ -19,7 +19,7 @@ elseif ($_POST['cVGenre'] <> '')
 }
 elseif ($_POST['cVTitle'] <> '')
 {
-	$stmt = 'SELECT * FROM movies WHERE title LIKE "'.$_POST['cVTitle'].'%" ORDER BY title';
+	$stmt = 'SELECT * FROM movies WHERE idx_title LIKE "'.$_POST['cVTitle'].'%" ORDER BY title';
 }
 else $stmt = 'SELECT * FROM movies ORDER BY lfdnr DESC';
 
