@@ -18,7 +18,8 @@
 		print '  "Genre": "'.$om_info['Genre'].'",';
 		print '  "Director": "'.$om_info['Director'].'",';
 		print '  "Actors": "'.$om_info['Actors'].'",';
-		print '  "Plot": "'.addslashes($tm_info['overview']).'"';
+//		print '  "Plot": "'.addslashes($tm_info['overview']).'"';
+		print '  "Plot": "'.addcslashes($tm_info['overview'],'"').'"';
 		print "}";
 	}
 	else
