@@ -6,7 +6,7 @@ if ($_POST['idGenre'] <> '')
 }
 elseif ($_POST['idTag'] <> '')
 {
-	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN taglinks ON taglinks.idMedia = movie.idMovie JOIN files ON files.idFile=movie.idFile WHERE taglinks.idTag='.$_POST['idTag'];
+	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN tag_link ON tag_link.media_id = movie.idMovie JOIN files ON files.idFile=movie.idFile WHERE tag_link.tag_id='.$_POST['idTag'];
 }
 elseif ($_POST['cXTitle'] <> '')
 {
