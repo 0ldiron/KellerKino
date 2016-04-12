@@ -27,8 +27,10 @@
 		}
 #		echo"<pre>";print_r($str_genres);echo"</pre>";
 
+		$idx_title = GetIndex($tm_info['title']);
+
 		$db = new SQLite3('videoworld.sqlite');
-		
+
 		$stmt = $db->prepare('INSERT INTO movies(id,imdb_id,original_title,overview,poster_path,release_date,title,imdbRating,backdrop_path,genres,actors,director,idx_title) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
 		$stmt->bindParam( 1, $tm_info['id']);
 		$stmt->bindParam( 2, $tm_info['imdb_id']);
@@ -42,7 +44,7 @@
 		$stmt->bindParam(10, $str_genres);
 		$stmt->bindParam(11, $om_info['Actors']);
 		$stmt->bindParam(12, $om_info['Director']);
-		$stmt->bindParam(13, GetIndex($tm_info['title']);
+		$stmt->bindParam(13, $idx_title);
 		$rc = $stmt->execute();
 		if (!$rc)
 		{
@@ -52,4 +54,3 @@
 		$db->close();
 	}
 ?>
-

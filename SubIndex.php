@@ -24,7 +24,6 @@ function GetIndex($title)
 	elseif (ctype_alpha($c1)) array_unshift ($worte, $c1);
 	else array_unshift($worte, '*');
 	$s1 = implode(" ",$worte);
-	echo $s1,'<BR>';
 	return $s1;
 }
 ?>
