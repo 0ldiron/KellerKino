@@ -67,7 +67,7 @@ function PrintVideos($stmt, $mode)
 		echo '<div class="movieDetail">';
 		echo '<B>'.$row['title'].' ('.substr($row['release_date'],0,4).')</B>';
 		echo '<TABLE>';
-		echo '<TR><TD>Rating:</TD><TD>'.$row['imdbRating'].'</TD></TR>';
+		echo '<TR><TD>Rating:</TD><TD>'.$row['imdbRating'].' ('.$row['imdbVotes'].')</TD></TR>';
 		echo '<TR><TD>Genre:</TD><TD>'.$row['genres'].'</TD></TR>';
 		echo '<TR><TD>Director:</TD><TD>'.$row['director'].'</TD></TR>';
 		echo '<TR><TD>Actors:</TD><TD>'.$row['actors'].'</TD></TR>';

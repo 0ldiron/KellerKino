@@ -31,7 +31,7 @@
 
 		$db = new SQLite3('videoworld.sqlite');
 
-		$stmt = $db->prepare('INSERT INTO movies(id,imdb_id,original_title,overview,poster_path,release_date,title,imdbRating,backdrop_path,genres,actors,director,idx_title) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)');
+		$stmt = $db->prepare('INSERT INTO movies(id,imdb_id,original_title,overview,poster_path,release_date,title,imdbRating,backdrop_path,genres,actors,director,idx_title,imdbVotes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
 		$stmt->bindParam( 1, $tm_info['id']);
 		$stmt->bindParam( 2, $tm_info['imdb_id']);
 		$stmt->bindParam( 3, $tm_info['original_title']);
@@ -45,6 +45,7 @@
 		$stmt->bindParam(11, $om_info['Actors']);
 		$stmt->bindParam(12, $om_info['Director']);
 		$stmt->bindParam(13, $idx_title);
+		$stmt->bindParam(14, $om_info['imdbVotes']);
 		$rc = $stmt->execute();
 		if (!$rc)
 		{
