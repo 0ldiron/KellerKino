@@ -94,6 +94,9 @@ function SetNavigation(data,status,xhr)
 		$("#spinner").show();
 		$.post("ServiceSync.php",{},SetContent);
 	});
+	$("#mSRate").click(function(){
+		window.open("ServiceRating.html", "_blank");
+	});
 }
 
 function SetContent(data,status,xhr)

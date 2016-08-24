@@ -5,6 +5,7 @@ echo '<li id="mSSync"  >Synchronize new Movies</li>';
 echo '<li id="mSPlayed">Export last played date</li>';
 echo '<li id="mSIndex" >Create Title Index</li>';
 echo '<li id="mSDup"   >List Duplicates</li>';
+echo '<li id="mSRate"  >Refresh IMDB Rating</li>';
 echo '</ul>';
 echo '</div>';
 ?>
