@@ -16,6 +16,10 @@ elseif ($_POST['idRating'] <> '')
 {
 	$sql_stmt = 'SELECT * FROM movie WHERE c05 LIKE \''.$_POST['idRating'].'%\' ORDER BY c02';
 }
+elseif ($_POST['idMovie'] <> '')
+{
+	$sql_stmt = 'SELECT * FROM movie WHERE idMovie IN ('.$_POST['idMovie'].') ORDER BY c02';
+}
 elseif (strcasecmp($_POST['cXDate'],'Played') == 0)
 {
 	$sql_stmt = 'SELECT * FROM movie_view ORDER BY lastPlayed DESC';;
@@ -30,7 +34,7 @@ if ($sql_stmt)
 	#DEBUG#
 	print '<script>console.log("'.$sql_stmt.'")</script>';
 
-	$db = new SQLite3('MyVideos105.db');
+	$db = new SQLite3('MyVideos93.db');
 	$res = $db->query($sql_stmt);
 	
 	print '<div id="movieLibraryContainer" class="contentContainer">';
@@ -61,7 +65,8 @@ if ($sql_stmt)
 			}
 		}
 
-		print '<div class="divTST">';
+		if ($row['lastPlayed']) print '<div class="divTST cPlayed">';
+		else print '<div class="divTST">';
 		$cover = str_replace('/w500/','/w185/',$cover);
 		
 		print '<div class="moviePoster" data-id="'.$row['idMovie'].'">';

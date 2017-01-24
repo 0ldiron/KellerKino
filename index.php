@@ -24,7 +24,9 @@
 			<ul>
 				<li id="vMovie" class="selected">Movies</li>
 				<li id="vVideo">Videos</li>
+				<li id="vFavorit" style="font-family: 'icon-worksregular';">&#34;</li>
 				<li id="vDetail">Details</li>
+				<li id="vPlayed">Played</li>
 			</ul>
 			<div style="float: right;">
 				<ul id ="mVideo" style="display: none;">

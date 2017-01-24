@@ -1,3 +1,5 @@
+var FavList = "";
+
 function SetDetail(data,status,xhr)
 {
 	$(".movieDetail").each(function(){
@@ -103,6 +105,7 @@ function SetContent(data,status,xhr)
 {
 	$('#content').html(data);
 	ToggleDetails();
+	TogglePlayed();
 	$("#spinner").hide();
 	$(".cVAdd").click(function(event){
 		event.stopPropagation();
@@ -180,6 +183,31 @@ function ToggleDetails()
 	}
 }
 
+function TogglePlayed()
+{
+	if ($('#vPlayed').hasClass('selected'))
+	{
+		$('.cPlayed').show();
+	}
+	else
+	{
+		$('.cPlayed').hide();
+	}
+}
+
+function AddFav(idMovie)
+{
+	if (FavList == "")
+	{
+		FavList = idMovie;
+	}
+	else
+	{
+		FavList = FavList + "," + idMovie;
+	}
+}
+
+
 $(document).ready(function(){
 	$("#details").click(function(){
 		$('#details').empty().hide();
@@ -190,6 +218,7 @@ $(document).ready(function(){
 		$('#mVideo').hide();
 		$('#vMovie').addClass('selected');
 		$('#mMovie').show();
+		$('#vFavorit').removeClass('selected');
 		$('#content').empty();
 	});
 	$("#vVideo").click(function(){
@@ -197,11 +226,25 @@ $(document).ready(function(){
 		$('#mMovie').hide();
 		$('#vVideo').addClass('selected');
 		$('#mVideo').show();
+		$('#vFavorit').removeClass('selected');
 		$('#content').empty();
+	});
+	$("#vFavorit").click(function(){
+		$('#vMovie').removeClass('selected');
+		$('#mMovie').hide();
+		$('#vVideo').removeClass('selected');
+		$('#mVideo').hide();
+		$('#vFavorit').addClass('selected');
+		$('#content').empty();
+		$.post("ListMovie.php",{idMovie: FavList},SetContent);
 	});
 	$("#vDetail").click(function(){
 		$(this).toggleClass('selected');
 		ToggleDetails();
+	});
+	$("#vPlayed").click(function(){
+		$(this).toggleClass('selected');
+		TogglePlayed();
 	});
 	$("#mXDate").click(function(){
 		$.post("MenuXDate.php",{},SetNavigation);

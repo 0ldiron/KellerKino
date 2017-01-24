@@ -3,7 +3,7 @@
 include("SubVideo.php");
 
 $db1 = new SQLite3('videoworld.sqlite');
-$db2 = new SQLite3('MyVideos105.db');
+$db2 = new SQLite3('MyVideos93.db');
 $res2 = $db2->query('SELECT c09 FROM movie');
 $updates = '';
 while($row2 = $res2->fetchArray(SQLITE3_ASSOC))

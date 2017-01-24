@@ -6,7 +6,7 @@ if ($_POST['id'] <> '')
 	#DEBUG#
 	print '<script>console.log("'.$sql_stmt.'")</script>';
 
-	$db = new SQLite3('MyVideos105.db');
+	$db = new SQLite3('MyVideos93.db');
 	$res = $db->query($sql_stmt);
 	
 	if ($row = $res->fetchArray(SQLITE3_ASSOC))
@@ -36,8 +36,9 @@ if ($_POST['id'] <> '')
 		echo "</TD><TD>";
 
 		echo '<B>'.$row['c00'].' ('.$row['c07'].')</B>';
+		echo ' <a title="Add to list" href="" onclick="AddFav('.$row['idMovie'].');return false;" style="font-family: \'icon-worksregular\';">&#34;</a>';
 		echo '<TABLE>';
-		echo '<TR><TD>Rating:</TD><TD>'.substr($row['c05'],0,3).'</TD></TR>';	# imdbRating
+		echo '<TR><TD>Rating:</TD><TD>'.substr($row['c05'],0,3).' ('.$row['c04'].')</TD></TR>';	# imdbRating
 		echo '<TR><TD>Genre:</TD><TD>'.$row['c14'].'</TD></TR>';	# genres
 		echo '<TR><TD>Director:</TD><TD>'.$row['c15'].'</TD></TR>';
 		$str_actors = '';

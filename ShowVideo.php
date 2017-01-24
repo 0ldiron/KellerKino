@@ -24,10 +24,11 @@
 
 		echo '<B>'.$row['title'].' ('.substr($row['release_date'],0,4).')</B>';
 		echo '<TABLE>';
-		echo '<TR><TD>Rating:</TD><TD>'.$row['imdbRating'].'</TD></TR>';
+		echo '<TR><TD>Rating:</TD><TD>'.$row['imdbRating'].' ('.$row['imdbVotes'].')</TD></TR>';
 		echo '<TR><TD>Genre:</TD><TD>'.$row['genres'].'</TD></TR>';
 		echo '<TR><TD>Director:</TD><TD>'.$row['director'].'</TD></TR>';
 		echo '<TR><TD>Actors:</TD><TD>'.$row['actors'].'</TD></TR>';
+		echo '<TR><TD>Links:</TD><TD><A target="_blank" HREF="http://www.imdb.com/title/'.$row['imdb_id'].'/">IMDB</A>&nbsp;<A target="_blank" HREF="https://www.themoviedb.org/movie/'.$row['id'].'">TMDB</A></TD></TR>';
 		echo '</TABLE>';
 		echo $row['overview'];
 		echo "</TD></TR></TABLE>";
