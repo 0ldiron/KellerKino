@@ -21,6 +21,6 @@ $db1->close();
 if (!empty($doubles))
 {
 	$stmt = 'SELECT * FROM movies WHERE imdb_id IN ('.$doubles.') ORDER BY imdb_id';
-	PrintVideos($stmt, 2);
+	PrintVideos($stmt, 2, true);
 }
 ?>

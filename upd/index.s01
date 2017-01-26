@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kellerkino</title>
+<?php
+	/* Nur LOGON und danach zurueck ins Hauptverzeichnis */
+	echo '<meta http-equiv="refresh" content="0; URL=\'http://'.$_SERVER['HTTP_HOST'].'\'" />';
+?>
+</head>
+<body>
+</body>
+</html>

@@ -103,7 +103,15 @@ function SetNavigation(data,status,xhr)
 
 function SetContent(data,status,xhr)
 {
-	$('#content').html(data);
+	if ($('#nextVideo').length != 0){
+		$('#nextVideo').remove();
+		$('#movieLibraryContainer').append(data);
+	}
+	else if ($('#nextMovie').length != 0){
+		$('#nextMovie').remove();
+		$('#movieLibraryContainer').append(data);
+	}
+	else $('#content').html(data);
 	ToggleDetails();
 	TogglePlayed();
 	$("#spinner").hide();
@@ -135,6 +143,14 @@ function SetContent(data,status,xhr)
 		$("#overlay").show();
 		$("#details").show();
 		$.post("ShowMovie.php",{id:$(this).data("id")},SetDetails);
+	});
+	$("#nextVideo").click(function(){
+		$("#spinner").show();
+		$.post("ListVideo.php",{next:1},SetContent);
+	});
+	$("#nextMovie").click(function(){
+		$("#spinner").show();
+		$.post("ListMovie.php",{next:1},SetContent);
 	});
 	$("#bTSearch").click(function(){
 		$("#spinner").show();

@@ -3,14 +3,16 @@
 #       1: Status Buttons
 #       2: Delete Button
 #		3: Info Buttons
-function PrintVideos($stmt, $mode)
+function PrintVideos($stmt, $mode, $first)
 {
 	$db = new SQLite3('videoworld.sqlite');
 	$res = $db->query($stmt);
-
-	echo '<div id="movieLibraryContainer" class="contentContainer">';
+	$rows = 0;
+	
+	if ($first) echo '<div id="movieLibraryContainer" class="contentContainer">';
 	while($row = $res->fetchArray(SQLITE3_ASSOC))
 	{
+		$rows++;
 		$title = $row['title'];
 		if (strlen($title) > 26)
 		{
@@ -76,13 +78,19 @@ function PrintVideos($stmt, $mode)
 		echo '</div>'; # movieDetail
 		echo '</div>'; # divTST
 	}
-	echo "</div>"; #contentContainer
 
+	if ($rows == 10)
+	{
+		echo '<div class="divTST" id="nextVideo">';
+		echo '<img class="cover" src="images/nextVideo.png" height="278" width="185">';
+		echo '</div>';
+	}
+		
+	if ($first) echo "</div>"; #contentContainer
 
 	$db->close();
 
 	#DEBUG#
 	echo '<script>console.log(\''.$stmt.'\')</script>';
 }
-
 ?>

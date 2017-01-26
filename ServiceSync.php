@@ -24,6 +24,6 @@ $db2->close();
 if (!empty($updates))
 {
 	$stmt = 'SELECT * FROM movies WHERE imdb_id IN ('.$updates.') ORDER BY title';
-	PrintVideos($stmt, 0);
+	PrintVideos($stmt, 0, true);
 }
 ?>
