@@ -86,7 +86,7 @@ function SetNavigation(data,status,xhr)
 		window.open("ServicePlayed.php", "_blank");
 	});
 	$("#mSIndex").click(function(){
-		window.open("ServiceIndex.php", "_blank");
+		window.open("ServiceIndex.html", "_blank");
 	});
 	$("#mSDup").click(function(){
 		$("#spinner").show();

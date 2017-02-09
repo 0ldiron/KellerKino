@@ -14,11 +14,13 @@ elseif ($_POST['cXTitle'] <> '')
 }
 elseif ($_POST['idRating'] <> '')
 {
-	$sql_stmt = 'SELECT * FROM movie WHERE c05 LIKE \''.$_POST['idRating'].'%\' ORDER BY c02';
+#	$sql_stmt = 'SELECT * FROM movie WHERE c05 LIKE \''.$_POST['idRating'].'%\' ORDER BY c02';
+	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN files ON files.idFile=movie.idFile WHERE c05 LIKE \''.$_POST['idRating'].'%\' ORDER BY c02';
 }
 elseif ($_POST['idMovie'] <> '')
 {
-	$sql_stmt = 'SELECT * FROM movie WHERE idMovie IN ('.$_POST['idMovie'].') ORDER BY c02';
+#	$sql_stmt = 'SELECT * FROM movie WHERE idMovie IN ('.$_POST['idMovie'].') ORDER BY c02';
+	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN files ON files.idFile=movie.idFile WHERE idMovie IN ('.$_POST['idMovie'].') ORDER BY c02';
 }
 elseif (strcasecmp($_POST['cXDate'],'Played') == 0)
 {
