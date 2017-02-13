@@ -1,4 +1,6 @@
 <?php
+include "Settings.php";
+
 if ($_POST['id'] <> '')
 {
 	$sql_stmt = 'SELECT * FROM movie_view WHERE idMovie='.$_POST['id'];
@@ -6,7 +8,7 @@ if ($_POST['id'] <> '')
 	#DEBUG#
 	print '<script>console.log("'.$sql_stmt.'")</script>';
 
-	$db = new SQLite3('MyVideos93.db');
+	$db = new SQLite3($SQL_MOVIE);
 	$res = $db->query($sql_stmt);
 	
 	if ($row = $res->fetchArray(SQLITE3_ASSOC))

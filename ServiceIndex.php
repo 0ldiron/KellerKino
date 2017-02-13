@@ -1,11 +1,11 @@
 <?php
-
+include "Settings.php";
 include "SubIndex.php";
 
 $ofs = $_POST["ofs"];
 $found = 0;
 
-$db = new SQLite3('MyVideos93.db');
+$db = new SQLite3($SQL_MOVIE);
 $res = $db->query('SELECT idMovie,c00 FROM movie LIMIT 10 OFFSET '.$ofs);
 
 $arr = array();

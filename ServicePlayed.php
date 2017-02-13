@@ -13,7 +13,9 @@
 
 <body>
 	<?php
-	$db = new SQLite3('MyVideos93.db');
+	include "Settings.php";
+	
+	$db = new SQLite3($SQL_MOVIE);
 	$res = $db->query('SELECT * FROM files WHERE playCount >0 ORDER BY strFilename');
 	while($row = $res->fetchArray(SQLITE3_ASSOC))
 	{
