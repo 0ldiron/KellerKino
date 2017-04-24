@@ -1,49 +1,70 @@
 <?php
+session_start();
 include "Settings.php";
 
 $sql_stmt = false;
+$row_count = 0;
+$first = true;
+
 if ($_POST['idGenre'] <> '')
 {
-	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN genre_link ON genre_link.media_id = movie.idMovie JOIN files ON files.idFile=movie.idFile WHERE genre_link.genre_id='.$_POST['idGenre'];
+	$sql_stmt = 'SELECT * FROM movie_view JOIN genre_link ON genre_link.media_id = movie_view.idMovie WHERE genre_link.genre_id='.$_POST['idGenre'].' ORDER BY c02 LIMIT '.$SQL_LIMIT.' OFFSET 0';
 }
 elseif ($_POST['idTag'] <> '')
 {
-	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN tag_link ON tag_link.media_id = movie.idMovie JOIN files ON files.idFile=movie.idFile WHERE tag_link.tag_id='.$_POST['idTag'];
+	$sql_stmt = 'SELECT * FROM movie_view JOIN tag_link ON tag_link.media_id = movie.idMovie WHERE tag_link.tag_id='.$_POST['idTag'].' ORDER BY c02 LIMIT '.$SQL_LIMIT.' OFFSET 0';
 }
 elseif ($_POST['cXTitle'] <> '')
 {
-	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN files ON files.idFile=movie.idFile WHERE c02 LIKE \''.$_POST['cXTitle'].'%\' ORDER BY c02';;
+	$sql_stmt = 'SELECT * FROM movie_view WHERE c02 LIKE \''.$_POST['cXTitle'].'%\' ORDER BY c02 LIMIT '.$SQL_LIMIT.' OFFSET 0';
 }
 elseif ($_POST['idRating'] <> '')
 {
-#	$sql_stmt = 'SELECT * FROM movie WHERE c05 LIKE \''.$_POST['idRating'].'%\' ORDER BY c02';
-	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN files ON files.idFile=movie.idFile WHERE c05 LIKE \''.$_POST['idRating'].'%\' ORDER BY c02';
+	$sql_stmt = 'SELECT * FROM movie_view WHERE c05 LIKE \''.$_POST['idRating'].'%\' ORDER BY c02 LIMIT '.$SQL_LIMIT.' OFFSET 0';
 }
 elseif ($_POST['idMovie'] <> '')
 {
-#	$sql_stmt = 'SELECT * FROM movie WHERE idMovie IN ('.$_POST['idMovie'].') ORDER BY c02';
-	$sql_stmt = 'SELECT movie.*, files.lastPlayed AS lastPlayed FROM movie JOIN files ON files.idFile=movie.idFile WHERE idMovie IN ('.$_POST['idMovie'].') ORDER BY c02';
+	$sql_stmt = 'SELECT * FROM movie_view WHERE idMovie IN ('.$_POST['idMovie'].') ORDER BY c02 LIMIT '.$SQL_LIMIT.' OFFSET 0';
 }
 elseif (strcasecmp($_POST['cXDate'],'Played') == 0)
 {
-	$sql_stmt = 'SELECT * FROM movie_view ORDER BY lastPlayed DESC';;
+	$sql_stmt = 'SELECT * FROM movie_view ORDER BY lastPlayed DESC LIMIT '.$SQL_LIMIT.' OFFSET 0';
 }
 elseif (strcasecmp($_POST['cXDate'],'Added') == 0)
 {
-	$sql_stmt = 'SELECT * FROM movie_view ORDER BY dateAdded DESC';;
+	$sql_stmt = 'SELECT * FROM movie_view ORDER BY dateAdded DESC LIMIT '.$SQL_LIMIT.' OFFSET 0';
 }
+elseif ($_POST['next'] <> '')
+{
+	$arr = explode(' ', $_SESSION['SQL_STMT']);
+	for ($i=0; $i<count($arr); $i++)
+	{
+		if (0 == strcasecmp($arr[$i], 'LIMIT'))
+		{
+			$LIMIT = $arr[$i+1];
+		}
+		if (0 == strcasecmp($arr[$i], 'OFFSET'))
+		{
+			$arr[$i+1] += $LIMIT;
+		}
+	}
+	$sql_stmt = implode(' ', $arr);
+	$first = false;
+}
+$_SESSION['SQL_STMT'] = $sql_stmt;
+
+#DEBUG#
+print '<script>console.log("'.$sql_stmt.'")</script>';
 
 if ($sql_stmt)
 {
-	#DEBUG#
-	print '<script>console.log("'.$sql_stmt.'")</script>';
-
 	$db = new SQLite3($SQL_MOVIE);
 	$res = $db->query($sql_stmt);
 	
-	print '<div id="movieLibraryContainer" class="contentContainer">';
+	if ($first) print '<div id="movieLibraryContainer" class="contentContainer">';
 	while($row = $res->fetchArray(SQLITE3_ASSOC))
 	{
+		$row_count++;
 		$title = $row['c00'];
 		if (strlen($title) > 26)
 		{
@@ -101,7 +122,13 @@ if ($sql_stmt)
 		print '</div>'; # movieDetail
 		print '</div>'; # divTST
 	} 
-	print "</div>"; # contentContainer
+	if ($row_count == $SQL_LIMIT)
+	{
+		echo '<div class="divTST" id="nextMovie">';
+		echo '<img class="cover" src="images/nextVideo.png" height="278" width="185">';
+		echo '</div>';
+	}
+	if ($first) print "</div>"; # contentContainer
 	$db->close();
 }
 ?>
