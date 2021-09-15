@@ -13,14 +13,16 @@ if ($_POST['id'] <> '')
 	
 	if ($row = $res->fetchArray(SQLITE3_ASSOC))
 	{
-		$first = strpos($row['c08'],"preview=");
+#		$first = strpos($row['c08'],"preview=");
+		$first = strpos($row['c08'],'aspect="poster" preview=');
 		if ($first === false)
 		{
 			$cover = "images/DefaultVideo.png";
 		}
 		else
 		{
-			$first+=8;
+#			$first+=8;
+			$first+=24;
 			$last  = strpos($row['c08'],">",$first);
 			if ($last === false)
 			{
@@ -30,17 +32,19 @@ if ($_POST['id'] <> '')
 			{
 				$cover = substr($row['c08'], $first, $last-$first);
 			}
-			$cover = str_replace('/w500/','/w185/',$cover);
+			$cover = str_replace('/w500/','/w300/',$cover);
 		}
 
 		echo "<TABLE><TR><TD>";
-		echo "<img class=\"cover\" alt=\"".$title."\" src=".$cover.">";
+		echo "<img class=\"Bigcover\" title=\"".$row['c00']."\" src=".$cover.">";
 		echo "</TD><TD>";
 
-		echo '<B>'.$row['c00'].' ('.$row['c07'].')</B>';
+#		echo '<B>'.$row['c00'].' ('.$row['c07'].')</B>';
+		echo '<B>'.$row['c00'].' ('.substr($row['premiered'],0,4).')</B>';
 		echo ' <a title="Add to list" href="" onclick="AddFav('.$row['idMovie'].');return false;" style="font-family: \'icon-worksregular\';">&#34;</a>';
 		echo '<TABLE>';
-		echo '<TR><TD>Rating:</TD><TD>'.substr($row['c05'],0,3).' ('.$row['c04'].')</TD></TR>';	# imdbRating
+#		echo '<TR><TD>Rating:</TD><TD>'.substr($row['c05'],0,3).' ('.$row['c04'].')</TD></TR>';	# imdbRating
+		echo '<TR><TD>Rating:</TD><TD>'.substr($row['rating'],0,3).' ('.number_format($row['votes']).')</TD></TR>';	# imdbRating
 		echo '<TR><TD>Genre:</TD><TD>'.$row['c14'].'</TD></TR>';	# genres
 		echo '<TR><TD>Director:</TD><TD>'.$row['c15'].'</TD></TR>';
 		$str_actors = '';

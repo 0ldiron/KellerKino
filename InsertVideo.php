@@ -1,6 +1,6 @@
 <?php
-	include("tmdb_v3.php");
-	include("omdb_v1.php");
+	include("tmdb_v3a.php");
+	include("imdb_v1.php");
 	include "SubIndex.php";
 
 
@@ -10,11 +10,12 @@
 	{
 #		echo 'ID: '.$_POST['id'];
 		$tmdb_V3 = new TMDBv3($apikey,'de');
-		$omdb_V1 = new OMDBv1();
+		$imdb_V1 = new IMDBv1();
 		
 #		echo "DETALLES DE PELICULA";
 		$tm_info = $tmdb_V3->movieDetail($_POST['id']);
-		$om_info = $omdb_V1->movieDetail($tm_info['imdb_id']);
+		$tm_crew = $tmdb_V3->movieCrew($_POST['id']);
+		$im_rate = $imdb_V1->GetRating($tm_info['imdb_id']);
 		
 #		echo"<pre>";print_r($tm_info);echo"</pre>";
 #		echo"<pre>";print_r($om_info);echo"</pre>";
@@ -39,13 +40,13 @@
 		$stmt->bindParam( 5, $tm_info['poster_path']);
 		$stmt->bindParam( 6, $tm_info['release_date']);
 		$stmt->bindParam( 7, $tm_info['title']);
-		$stmt->bindParam( 8, $om_info['imdbRating']);
+		$stmt->bindParam( 8, $im_rate['rating']);
 		$stmt->bindParam( 9, $tm_info['backdrop_path']);
 		$stmt->bindParam(10, $str_genres);
-		$stmt->bindParam(11, $om_info['Actors']);
-		$stmt->bindParam(12, $om_info['Director']);
+		$stmt->bindParam(11, $tm_crew['cast']);
+		$stmt->bindParam(12, $tm_crew['Director']);
 		$stmt->bindParam(13, $idx_title);
-		$stmt->bindParam(14, $om_info['imdbVotes']);
+		$stmt->bindParam(14, $im_rate[ratingCount]);
 		$rc = $stmt->execute();
 		if (!$rc)
 		{

@@ -1,9 +1,4 @@
-# Database
-*.db
-*.sqlite
-# Work Files
-fonts_work/*.*
-images_work/*.*
-php_work/*.*
-*.zip
-MyVideos75-2013-12-11
+MyVideos107.db
+videoworld.sqlite
+fonts/
+images/

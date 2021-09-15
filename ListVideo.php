@@ -6,25 +6,25 @@ include("SubVideo.php");
 
 $first = true;
 
-if (($_POST['idStatus'] <> '') & ($_POST['idStatus'] <> -1))
+if (isset($_POST['idStatus']) && ($_POST['idStatus'] <> -1))
 {
 	$stmt = 'SELECT * FROM movies WHERE status='.$_POST['idStatus'].' ORDER BY lfdnr DESC LIMIT 10 OFFSET 0';
 }
-elseif ($_POST['idRating'] <> '')
+elseif (isset($_POST['idRating']))
 {
 	$start = $_POST['idRating'];
 	$end   = $start + 1;
 	$stmt = 'SELECT * FROM movies WHERE imdbRating BETWEEN '.$start.' AND '.$end.' ORDER BY lfdnr DESC LIMIT 10 OFFSET 0';
 }
-elseif ($_POST['cVGenre'] <> '')
+elseif (isset($_POST['cVGenre']))
 {
 	$stmt = 'SELECT * FROM movies WHERE genres LIKE "%'.$_POST['cVGenre'].'%" ORDER BY title LIMIT 10 OFFSET 0';
 }
-elseif ($_POST['cVTitle'] <> '')
+elseif (isset($_POST['cVTitle']))
 {
 	$stmt = 'SELECT * FROM movies WHERE idx_title LIKE "'.$_POST['cVTitle'].'%" ORDER BY idx_title LIMIT 10 OFFSET 0';
 }
-elseif ($_POST['next'] <> '')
+elseif (isset($_POST['next']))
 {
 	$arr = explode(' ', $_SESSION['SQL_STMT']);
 	for ($i=0; $i<count($arr); $i++)

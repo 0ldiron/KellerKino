@@ -1,6 +1,5 @@
 <?php
 	include("tmdb_v3.php");
-	include("omdb_v1.php");
 
 	$apikey="ab6e8dd491403ef61a74448dc97f1e70";
 

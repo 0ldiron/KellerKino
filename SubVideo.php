@@ -1,4 +1,16 @@
 <?php
+function Rating_32($rating, $votes)
+{
+	$arr_bgc = array("#63BE7B","#85C87D","#A8D27F","#CBDC81","#EDE683","#FFDD82","#FDC07C","#FCA377","#FA8671","#F8696B");
+	$txt_vot = number_format($votes,0,",",".");
+    
+    print "<div class=\"cRating\">";
+	print "  <img src=\"images/rating.png\" class=\"cRatingIcon\" title=\"$txt_vot\" style=\"background-color: ".$arr_bgc[round($rating)].";\">\n";
+	print "  <div title=\"$txt_vot\" class=\"cRatingText\">".number_format($rating,1,",",".")."</div>\n";
+	print "</div>\n";
+}
+
+
 # $mode 0: Keine Buttons
 #       1: Status Buttons
 #       2: Delete Button
@@ -33,6 +45,7 @@ function PrintVideos($stmt, $mode, $first)
 		}
 
 		echo '<div class="movieIcon">';
+		Rating_32($row['imdbRating'],$row['imdbVotes']);
 		if ($mode == 1)
 		{
 			$s1= ""; $s2= ""; $s3= "";
